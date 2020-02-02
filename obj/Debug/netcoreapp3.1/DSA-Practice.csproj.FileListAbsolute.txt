@@ -1,0 +1,11 @@
+d:\Projects\Programming\DSA-Practice\bin\Debug\netcoreapp3.1\DSA-Practice.exe
+D:\Projects\Programming\DSA-Practice\bin\Debug\netcoreapp3.1\DSA-Practice.deps.json
+D:\Projects\Programming\DSA-Practice\bin\Debug\netcoreapp3.1\DSA-Practice.runtimeconfig.json
+D:\Projects\Programming\DSA-Practice\bin\Debug\netcoreapp3.1\DSA-Practice.runtimeconfig.dev.json
+d:\Projects\Programming\DSA-Practice\bin\Debug\netcoreapp3.1\DSA-Practice.dll
+d:\Projects\Programming\DSA-Practice\bin\Debug\netcoreapp3.1\DSA-Practice.pdb
+d:\Projects\Programming\DSA-Practice\obj\Debug\netcoreapp3.1\DSA-Practice.csprojAssemblyReference.cache
+d:\Projects\Programming\DSA-Practice\obj\Debug\netcoreapp3.1\DSA-Practice.AssemblyInfoInputs.cache
+d:\Projects\Programming\DSA-Practice\obj\Debug\netcoreapp3.1\DSA-Practice.AssemblyInfo.cs
+d:\Projects\Programming\DSA-Practice\obj\Debug\netcoreapp3.1\DSA-Practice.dll
+d:\Projects\Programming\DSA-Practice\obj\Debug\netcoreapp3.1\DSA-Practice.pdb
