@@ -5,7 +5,7 @@ namespace DSA_Practice
 {
     class Program
     {
-        private static readonly int[] daysOfMonths = new int[] {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        private static readonly int[] daysOfMonths = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
         static void Main(string[] args)
         {
             /* var days = DaysBetweenDates(2012, 1, 1, 2012, 1, 2);
@@ -36,7 +36,10 @@ namespace DSA_Practice
 
         static int[] nextDay(int year, int month, int day)
         {
-            var nextDate = new int[] {year, month, day};
+            //
+            // Summary:
+            //     Assumes every month has 30 days
+            var nextDate = new int[] { year, month, day };
             if (day == 30)
             {
                 nextDate[2] = 1;
