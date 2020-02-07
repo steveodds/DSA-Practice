@@ -8,14 +8,21 @@ namespace DSA_Practice
         private static readonly int[] daysOfMonths = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
         static void Main(string[] args)
         {
-            var days = DaysBetweenDates(2012, 9, 30, 2012, 10, 30);
-            System.Console.WriteLine($"First date, number of days: {days}.");
+            try
+            {
+                var days = DaysBetweenDates(2013, 1, 24, 2013, 6, 29);
+                System.Console.WriteLine($"First date, number of days: {days}.");
 
-            days = DaysBetweenDates(2012, 1, 1, 2013, 1, 1);
-            System.Console.WriteLine($"Second date, number of days: {days}.");
+                days = DaysBetweenDates(1912, 12, 12, 2012, 12, 12);
+                System.Console.WriteLine($"Second date, number of days: {days}.");
 
-            days = DaysBetweenDates(2012, 9, 1, 2012, 9, 4);
-            System.Console.WriteLine($"Third date, number of days: {days}.");
+                days = DaysBetweenDates(2013, 1, 1, 2013, 1, 1);
+                System.Console.WriteLine($"Third date, number of days: {days}.");
+            }
+            catch (System.Exception e)
+            {
+                System.Console.WriteLine($"Error: {e.Message}");
+            }
         }
 
 
@@ -43,6 +50,17 @@ namespace DSA_Practice
         }
         static int DaysBetweenDates(int y1, int m1, int d1, int y2, int m2, int d2)
         {
+            var dateError = "The second date must come after the first date.";
+            if (y1 > y2)
+                throw new ArgumentException(dateError);
+
+            if (y1 == y2 && m1 > m2)
+                throw new ArgumentException(dateError);
+
+            if ((y1 == y2 && m1 == m2) && d1 > d2)
+                throw new ArgumentException(dateError);
+
+
             int days = 0;
             int[] nextDate = new int[3];
             int[] date1 = new int[] { y1, m1, d1 };
