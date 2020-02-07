@@ -10,14 +10,8 @@ namespace DSA_Practice
         {
             try
             {
-                var days = DaysBetweenDates(2013, 1, 24, 2013, 6, 29);
-                System.Console.WriteLine($"First date, number of days: {days}.");
-
-                days = DaysBetweenDates(1912, 12, 12, 2012, 12, 12);
-                System.Console.WriteLine($"Second date, number of days: {days}.");
-
-                days = DaysBetweenDates(2013, 1, 1, 2013, 1, 1);
-                System.Console.WriteLine($"Third date, number of days: {days}.");
+                var date = NextDay(2020, 12, 31);
+                System.Console.WriteLine($"Date after 31st, December 2020 is {date[2]}/{date[1]}/{date[0]}.");
             }
             catch (System.Exception e)
             {
@@ -31,8 +25,12 @@ namespace DSA_Practice
             //
             // Summary:
             //     Assumes every month has 30 days
+            if (day > DaysInMonth(year, month) || day < 1)
+                throw new ArgumentException("An invalid day was given.");
+            
             var nextDate = new int[] { year, month, day };
-            if (day == 30)
+            
+            if (day == DaysInMonth(year, month))
             {
                 nextDate[2] = 1;
                 if (month == 12)
@@ -77,6 +75,20 @@ namespace DSA_Practice
             return days;
         }
 
+        static int DaysInMonth(int year, int month)
+        {
+            var daysInMonth = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+            if (year == 0)
+                throw new ArgumentException("The year given was invalid.");
+
+            if (month < 1 || month > 12)
+                throw new ArgumentException("The month given was out of range.");
+
+            if (IsLeapYear(year) && month == 2)
+                return 29;
+            else
+                return daysInMonth[month - 1];
+        }
         static bool IsEqualToDate(int[] date, int[] dateToCompare)
         {
             return date[0] == dateToCompare[0] && date[1] == dateToCompare[1] && date[2] == dateToCompare[2];
