@@ -8,33 +8,18 @@ namespace DSA_Practice
         private static readonly int[] daysOfMonths = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
         static void Main(string[] args)
         {
-            /* var days = DaysBetweenDates(2012, 1, 1, 2012, 1, 2);
-            Console.WriteLine($"{days} days."); */
+            var days = DaysBetweenDates(2012, 9, 30, 2012, 10, 30);
+            System.Console.WriteLine($"First date, number of days: {days}.");
 
-            var date1 = nextDay(1999, 12, 30);
-            var date2 = nextDay(2013, 1, 30);
-            var date3 = nextDay(2012, 12, 30);
-            var builder = new StringBuilder();
+            days = DaysBetweenDates(2012, 1, 1, 2013, 1, 1);
+            System.Console.WriteLine($"Second date, number of days: {days}.");
 
-            foreach (var date in date1)
-            {
-                builder.Append(date + ", ");
-            }
-            builder.Append("\n");
-            foreach (var date in date2)
-            {
-                builder.Append(date + ", ");
-            }
-            builder.Append("\n");
-            foreach (var date in date3)
-            {
-                builder.Append(date + ", ");
-            }
-            System.Console.WriteLine(builder);
+            days = DaysBetweenDates(2012, 9, 1, 2012, 9, 4);
+            System.Console.WriteLine($"Third date, number of days: {days}.");
         }
 
 
-        static int[] nextDay(int year, int month, int day)
+        static int[] NextDay(int year, int month, int day)
         {
             //
             // Summary:
@@ -58,26 +43,25 @@ namespace DSA_Practice
         }
         static int DaysBetweenDates(int y1, int m1, int d1, int y2, int m2, int d2)
         {
-            var days = 0;
-            for (int birthYear = y1 + 1; birthYear < y2 - 1; birthYear++)
+            int days = 0;
+            int[] nextDate = new int[3];
+            int[] date1 = new int[] { y1, m1, d1 };
+            int[] date2 = new int[] { y2, m2, d2 };
+            while (!IsEqualToDate(date1, date2))
             {
-                days += IsLeapYear(birthYear) ? 366 : 365;
+                nextDate = NextDay(date1[0], date1[1], date1[2]);
+                date1[0] = nextDate[0];
+                date1[1] = nextDate[1];
+                date1[2] = nextDate[2];
+                days++;
             }
-
-            for (int birthMonth = m1 < 11 ? m1 + 1 : m1; birthMonth < 12 - m1; birthMonth++)
-            {
-                days += IsLeapYear(y1) && birthMonth == 2 ? 29 : daysOfMonths[birthMonth];
-            }
-
-            for (int currentMonth = m2 > 1 ? m2 - 1 : m2; currentMonth > 0 && currentMonth < 12; currentMonth++)
-            {
-                days += IsLeapYear(y2) && currentMonth == 2 ? 29 : daysOfMonths[currentMonth];
-            }
-
-            days += d2;
-            days += IsLeapYear(y1) && m1 == 2 ? 29 - d1 : daysOfMonths[m1] - d1;
 
             return days;
+        }
+
+        static bool IsEqualToDate(int[] date, int[] dateToCompare)
+        {
+            return date[0] == dateToCompare[0] && date[1] == dateToCompare[1] && date[2] == dateToCompare[2];
         }
 
         static bool IsLeapYear(int year)
