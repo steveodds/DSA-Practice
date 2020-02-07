@@ -10,8 +10,8 @@ namespace DSA_Practice
         {
             try
             {
-                var date = NextDay(2020, 12, 31);
-                System.Console.WriteLine($"Date after 31st, December 2020 is {date[2]}/{date[1]}/{date[0]}.");
+                var days = DaysBetweenDates(2013, 1, 24, 2024, 6, 29);
+                System.Console.WriteLine($"Number of days: {days}. Number of years: {days/365}");
             }
             catch (System.Exception e)
             {
@@ -48,6 +48,10 @@ namespace DSA_Practice
         }
         static int DaysBetweenDates(int y1, int m1, int d1, int y2, int m2, int d2)
         {
+            if (d1 > DaysInMonth(y1, m1) || d2 > DaysInMonth(y2, m2) || d1 < 1 || d2 < 1)
+                throw new ArgumentException("An invalid day was given.");
+
+
             var dateError = "The second date must come after the first date.";
             if (y1 > y2)
                 throw new ArgumentException(dateError);
