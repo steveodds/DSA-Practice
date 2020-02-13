@@ -4,8 +4,55 @@ namespace DSA_Practice
 {
     class Program
     {
-        private static readonly int[] daysOfMonths = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
         static void Main(string[] args)
+        {
+            var test = new Stack<int>();
+            /* test */
+            try
+            {
+                var customTest = new CustomStack<int>(5);
+                System.Console.WriteLine(customTest.Count());
+                System.Console.WriteLine(customTest.IsEmpty());
+
+                customTest.Push(1);
+                customTest.Push(2);
+                customTest.Push(3);
+                customTest.Push(4);
+                customTest.Push(5);
+                
+                System.Console.WriteLine(customTest.Count());
+                System.Console.WriteLine(customTest.IsEmpty());
+
+                System.Console.WriteLine($"Has 3? {customTest.Contains(3)}");
+                System.Console.WriteLine($"Has 100? {customTest.Contains(100)}");
+
+                System.Console.WriteLine(customTest.Top());
+                while (!customTest.IsEmpty())
+                {
+                    System.Console.Write(customTest.Pop() + " ");
+                }
+                System.Console.WriteLine("\n" + customTest.Count());
+                System.Console.WriteLine(customTest.IsEmpty());
+
+                customTest.Push(1);
+                customTest.Push(2);
+
+                System.Console.WriteLine(customTest.Count());
+                customTest.Clear();
+                System.Console.WriteLine(customTest.Count());
+                System.Console.WriteLine(customTest.IsEmpty());
+            }
+            catch (System.Exception e)
+            {
+                System.Console.WriteLine(e);
+            }
+        }
+
+
+
+
+        //Tests CustomLinkedList
+        static void TestLinkedList()
         {
             try
             {
@@ -50,7 +97,7 @@ namespace DSA_Practice
                 testNumbers.Append(5);
 
                 System.Console.WriteLine($"Has {testNumbers.Count()}");
-                
+
                 testNumbers.AddLast(1001);
                 testNumbers.AddFirst(1000);
                 System.Console.WriteLine(testNumbers.First().data);
@@ -82,10 +129,6 @@ namespace DSA_Practice
                 System.Console.WriteLine(e);
             }
         }
-
-
-
-
         //Tests DaysDatesCalculator
         static void GetDays()
         {
@@ -99,5 +142,6 @@ namespace DSA_Practice
                 System.Console.WriteLine($"Error: {e.Message}");
             }
         }
+        private static readonly int[] daysOfMonths = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     }
 }
