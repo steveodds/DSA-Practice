@@ -4,6 +4,7 @@ namespace DSA_Practice
 {
     public class CustomLinkedList<T>
     {
+        //TODO Implement TAIL
         public Node<T> Head { get; set; }
         public CustomLinkedList()
         {
@@ -84,6 +85,23 @@ namespace DSA_Practice
 
 
         //Other operations
+        public Node<T> Find(T value)
+        {
+            //Finds node with the given value
+            if (Head == null)
+                throw new InvalidOperationException("The list is empty!");
+            var temp = Head;
+            while (!temp.data.Equals(value))
+            {
+                temp = temp.Next;
+                if (temp.Next == null && !temp.data.Equals(value))
+                {
+                    return null;
+                }
+            }
+            return temp;
+        }
+
         public void Append(T newValue)
         {
             AddLast(newValue);
@@ -111,18 +129,35 @@ namespace DSA_Practice
 
         public void Remove(T value)
         {
-            //TODO Erases element from the list
-            throw new NotImplementedException();
+            //Erases element from the list
+            var toRemove = Find(value);
+            if (toRemove == null)
+                throw new InvalidOperationException("Cannot remove non-existent value.");
+            var beforeRemoved = Head;
+            if (toRemove == Head)
+                RemoveFirst();
+            else if (toRemove == Last())
+                RemoveLast();
+            else
+            {
+                while (beforeRemoved.Next != toRemove)
+                {
+                    beforeRemoved = beforeRemoved.Next;
+                }
+                beforeRemoved.Next = toRemove.Next;
+            }
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            Head = null;
         }
 
         public int Count()
         {
             //Returns the number of elements in the list
+            if (Head == null)
+                return 0;
             var temp = Head;
             var count = Head == null ? 0 : 1;
             while (temp.Next != null)
@@ -135,8 +170,8 @@ namespace DSA_Practice
         }
         public bool Contains(T value)
         {
-            //TODO Finds or checks if element is in the list
-            throw new NotImplementedException();
+            //Finds or checks if element is in the list
+            return Find(value) != null;
         }
 
         public bool IsEmpty()
