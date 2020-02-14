@@ -6,8 +6,15 @@ namespace DSA_Practice
     {
         static void Main(string[] args)
         {
-            var test = new Stack<int>();
-            /* test */
+            
+        }
+
+
+
+
+        //Tests CustomStack
+        static void TestStackandStackList()
+        {
             try
             {
                 var customTest = new CustomStack<int>(5);
@@ -47,10 +54,6 @@ namespace DSA_Practice
                 System.Console.WriteLine(e);
             }
         }
-
-
-
-
         //Tests CustomLinkedList
         static void TestLinkedList()
         {
